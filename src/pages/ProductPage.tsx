@@ -194,6 +194,32 @@ const ProductPage = () => {
             )}
             <WhatsAppButton productName={product.name} outOfStock={product.stockStatus === "Out of Stock"} />
           </div>
+
+          <div className="mt-12 bg-neutral-50 rounded-xl p-6">
+            <h3 className="font-display text-lg text-foreground mb-4">What's Included</h3>
+            <ul className="space-y-3">
+              <li className="flex gap-3 text-sm font-body text-neutral-600">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                Sets of 24 artisan-painted press-on nails (no sizing required)
+              </li>
+              <li className="flex gap-3 text-sm font-body text-neutral-600">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                Professional nail glue (lasts up to 2-3 weeks)
+              </li>
+              <li className="flex gap-3 text-sm font-body text-neutral-600">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                Adhesive sticky tabs (for temporary wear 1-3 days)
+              </li>
+              <li className="flex gap-3 text-sm font-body text-neutral-600">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                Cuticle pusher & double-sided nail file
+              </li>
+              <li className="flex gap-3 text-sm font-body text-neutral-600">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                Alcohol prep pads
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
