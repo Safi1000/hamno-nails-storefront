@@ -163,31 +163,34 @@ const ProductPage = () => {
           </div>
 
           <div className="space-y-3">
-            <button
-              onClick={handleAddToCart}
-              disabled={product.stockStatus === "Out of Stock"}
-              className={`w-full font-body py-3 rounded-lg transition-colors ${
-                product.stockStatus === "Out of Stock"
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-primary text-primary-foreground btn-press hover:bg-secondary"
-              }`}
-            >
-              {product.stockStatus === "Out of Stock" ? "Out of Stock" : "Add to Cart"}
-            </button>
             {product.stockStatus === "Out of Stock" ? (
-              <div
-                className="block w-full border-2 border-gray-300 bg-gray-100 text-gray-400 font-body py-3 rounded-lg text-center cursor-not-allowed"
-              >
+              <div className="block w-full border-2 border-gray-300 bg-gray-100 text-gray-400 font-body py-3 rounded-lg text-center cursor-not-allowed">
                 Out of Stock
               </div>
-            ) : (
+            ) : product.stockStatus === "Made to Order" ? (
               <Link
                 to="/checkout"
                 onClick={handleAddToCart}
-                className="block w-full border-2 border-primary text-foreground font-body py-3 rounded-lg text-center btn-press hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="block w-full border-2 border-primary bg-primary text-primary-foreground font-body py-3 rounded-lg text-center btn-press hover:bg-secondary transition-colors"
               >
-                Buy Now
+                Order Now
               </Link>
+            ) : (
+              <>
+                <button
+                  onClick={handleAddToCart}
+                  className="w-full font-body py-3 rounded-lg transition-colors bg-primary text-primary-foreground btn-press hover:bg-secondary"
+                >
+                  Add to Cart
+                </button>
+                <Link
+                  to="/checkout"
+                  onClick={handleAddToCart}
+                  className="block w-full border-2 border-primary text-foreground font-body py-3 rounded-lg text-center btn-press hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  Buy Now
+                </Link>
+              </>
             )}
             <WhatsAppButton productName={product.name} outOfStock={product.stockStatus === "Out of Stock"} />
           </div>

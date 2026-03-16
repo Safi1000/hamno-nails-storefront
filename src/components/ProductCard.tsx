@@ -61,7 +61,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            if (product.stockStatus !== "Out of Stock") {
+            if (product.stockStatus === "Made to Order") {
+              window.location.href = `/product/${product.id}`;
+            } else if (product.stockStatus !== "Out of Stock") {
               addToCart(product);
             }
           }}
@@ -72,7 +74,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
               : "bg-primary text-primary-foreground btn-press hover:bg-secondary"
           }`}
         >
-          {product.stockStatus === "Out of Stock" ? "Out of Stock" : "Add to Cart"}
+          {product.stockStatus === "Out of Stock" 
+            ? "Out of Stock" 
+            : (product.stockStatus === "Made to Order" ? "Order Now" : "Add to Cart")}
         </button>
       </div>
     </motion.div>
