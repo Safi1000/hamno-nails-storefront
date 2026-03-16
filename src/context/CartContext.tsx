@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { CartItem, Product } from "@/data/products";
+import { toast } from "sonner";
 
 interface CartContextType {
   items: CartItem[];
@@ -44,6 +45,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         );
       }
       return [...prev, { product, quantity: 1 }];
+    });
+    toast.success("Added to Cart", {
+      description: `${product.name} has been added to your cart.`
     });
   }, []);
 

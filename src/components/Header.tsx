@@ -38,6 +38,13 @@ const Header = () => {
               </span>
             )}
           </button>
+          
+          <Link 
+            to="/checkout" 
+            className="bg-secondary text-primary-foreground px-5 py-2 rounded-full text-[9px] md:text-xs uppercase tracking-[0.2em] font-bold hover:bg-secondary/90 transition-all shadow-sm"
+          >
+            Checkout
+          </Link>
         </div>
       </div>
     </header>

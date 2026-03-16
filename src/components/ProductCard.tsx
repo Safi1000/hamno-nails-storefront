@@ -56,28 +56,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <p className="font-body text-secondary text-sm font-semibold mb-2">Rs. {product.price}</p>
-
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (product.stockStatus === "Made to Order") {
-              window.location.href = `/product/${product.id}`;
-            } else if (product.stockStatus !== "Out of Stock") {
-              addToCart(product);
-            }
-          }}
-          disabled={product.stockStatus === "Out of Stock"}
-          className={`w-full font-body text-sm py-2 rounded-md transition-colors ${
-            product.stockStatus === "Out of Stock"
-              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-              : "bg-primary text-primary-foreground btn-press hover:bg-secondary"
-          }`}
-        >
-          {product.stockStatus === "Out of Stock" 
-            ? "Out of Stock" 
-            : (product.stockStatus === "Made to Order" ? "Order Now" : "Add to Cart")}
-        </button>
       </div>
     </motion.div>
   );
