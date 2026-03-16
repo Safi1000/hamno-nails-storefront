@@ -15,7 +15,7 @@ const ProductPage = () => {
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  const { addToCart } = useCart();
+  const { addToCart, packaging, setPackaging, prepKit, setPrepKit } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
@@ -144,18 +144,52 @@ const ProductPage = () => {
           <p className="font-body text-muted-foreground mb-6">{product.description}</p>
 
           <div className="mb-6 space-y-4">
-            <div className="flex items-center gap-3 text-neutral-500 font-body text-xs uppercase tracking-widest border-y border-neutral-100 py-3">
-              <span className="flex items-center gap-1.5">
-                <span className="w-1 h-1 rounded-full bg-primary" />
-                24 Artisan-painted Nails
-              </span>
-              <span className="opacity-20">|</span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-1 h-1 rounded-full bg-primary" />
-                Prep Kit Included
-              </span>
-            </div>
             
+            {/* Global Add-ons */}
+            <div className="space-y-4 py-4 border-y border-neutral-100">
+              <div className="space-y-3">
+                <p className="font-body text-sm font-semibold text-foreground">Packaging Theme</p>
+                <div className="flex flex-col gap-2">
+                  <label className="flex items-center gap-3 cursor-pointer group">
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${packaging === "Standard" ? 'border-primary' : 'border-neutral-300 group-hover:border-primary/50'}`}>
+                      {packaging === "Standard" && <div className="w-2 h-2 rounded-full bg-primary" />}
+                    </div>
+                    <span className="font-body text-sm text-foreground flex-1">Standard Packaging</span>
+                    <input type="radio" value="Standard" checked={packaging === "Standard"} onChange={() => setPackaging("Standard")} className="hidden" />
+                    <span className="font-body text-sm text-muted-foreground">Free</span>
+                  </label>
+                  <label className="flex items-center gap-3 cursor-pointer group">
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${packaging === "Pink Theme" ? 'border-primary' : 'border-neutral-300 group-hover:border-primary/50'}`}>
+                      {packaging === "Pink Theme" && <div className="w-2 h-2 rounded-full bg-primary" />}
+                    </div>
+                    <span className="font-body text-sm text-foreground flex-1">Pink Themed Packaging</span>
+                    <input type="radio" value="Pink Theme" checked={packaging === "Pink Theme"} onChange={() => setPackaging("Pink Theme")} className="hidden" />
+                    <span className="font-body text-sm text-muted-foreground">+ Rs. 150</span>
+                  </label>
+                  <label className="flex items-center gap-3 cursor-pointer group">
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${packaging === "Black Theme" ? 'border-primary' : 'border-neutral-300 group-hover:border-primary/50'}`}>
+                      {packaging === "Black Theme" && <div className="w-2 h-2 rounded-full bg-primary" />}
+                    </div>
+                    <span className="font-body text-sm text-foreground flex-1">Black Themed Packaging</span>
+                    <input type="radio" value="Black Theme" checked={packaging === "Black Theme"} onChange={() => setPackaging("Black Theme")} className="hidden" />
+                    <span className="font-body text-sm text-muted-foreground">+ Rs. 150</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-3 border-t border-neutral-100/50">
+                <p className="font-body text-sm font-semibold text-foreground">Optional Extras</p>
+                <label className="flex items-center gap-3 cursor-pointer group">
+                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${prepKit ? 'bg-primary border-primary' : 'border-neutral-300 group-hover:border-primary/50'}`}>
+                    {prepKit && <div className="w-2 h-2 rounded-sm bg-primary-foreground" />}
+                  </div>
+                  <span className="font-body text-sm text-foreground flex-1">Add Prep Kit</span>
+                  <input type="checkbox" checked={prepKit} onChange={(e) => setPrepKit(e.target.checked)} className="hidden" />
+                  <span className="font-body text-sm text-muted-foreground">+ Rs. 100</span>
+                </label>
+              </div>
+            </div>
+
             <div>
               <p className="font-body text-sm text-foreground mb-2">Quantity</p>
               <QuantitySelector quantity={quantity} onChange={setQuantity} />

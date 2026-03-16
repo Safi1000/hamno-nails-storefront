@@ -10,7 +10,7 @@ const WhatsAppButton = ({ productName, className = "", outOfStock = false }: Wha
   const message = productName
     ? `Hello! I want to order the ${productName}.`
     : "Hello! I want to place an order.";
-  const url = `https://wa.me/923000000000?text=${encodeURIComponent(message)}`;
+  const url = `https://wa.me/923105826211?text=${encodeURIComponent(message)}`;
 
   if (outOfStock) {
     return (

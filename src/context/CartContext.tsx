@@ -12,6 +12,13 @@ interface CartContextType {
   closeCart: () => void;
   toggleFavorite: (productId: string) => void;
   isFavorite: (productId: string) => boolean;
+  
+  // Global Add-ons
+  packaging: "Standard" | "Pink Theme" | "Black Theme";
+  setPackaging: (theme: "Standard" | "Pink Theme" | "Black Theme") => void;
+  prepKit: boolean;
+  setPrepKit: (hasKit: boolean) => void;
+
   totalItems: number;
   totalPrice: number;
   clearCart: () => void;
@@ -23,6 +30,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
+  
+  // Global Add-ons
+  const [packaging, setPackaging] = useState<"Standard" | "Pink Theme" | "Black Theme">("Standard");
+  const [prepKit, setPrepKit] = useState(false);
 
   const addToCart = useCallback((product: Product) => {
     setItems((prev) => {
@@ -70,7 +81,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     <CartContext.Provider
       value={{
         items, isOpen, favorites, addToCart, removeFromCart, updateQuantity,
-        toggleCart, closeCart, toggleFavorite, isFavorite, totalItems, totalPrice, clearCart,
+        toggleCart, closeCart, toggleFavorite, isFavorite, 
+        packaging, setPackaging, prepKit, setPrepKit,
+        totalItems, totalPrice, clearCart,
       }}
     >
       {children}

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
@@ -11,7 +12,7 @@ serve(async (req) => {
   }
 
   try {
-    const { name, email, phone, address, notes, paymentMethod, items, totalPrice, shippingFee, giftBox, adminEmail } = await req.json();
+    const { name, email, phone, address, notes, paymentMethod, items, totalPrice, shippingFee, packaging, has_prep_kit, grandTotal, adminEmail } = await req.json();
 
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     if (!RESEND_API_KEY) {
@@ -24,7 +25,7 @@ serve(async (req) => {
       )
       .join("");
 
-    const calculatedTotal = totalPrice + shippingFee + (giftBox || 0);
+    const calculatedTotal = grandTotal;
 
     const emailHtml = `
       <div style="font-family:'Poppins',Arial,sans-serif;max-width:600px;margin:0 auto;background:#FFF6F7;border-radius:24px;padding:40px;border:1px solid #F2D2D6;">
@@ -64,9 +65,14 @@ serve(async (req) => {
             <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:#9F1C2A;font-size:14px;">
               <span>Shipping:</span><span style="float:right;">Rs. ${shippingFee}</span>
             </div>
-            ${giftBox ? `
+            ${packaging !== "Standard" ? `
             <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:#9F1C2A;font-size:14px;">
-              <span>Luxury Gift Box:</span><span style="float:right;">Rs. ${giftBox}</span>
+              <span>Packaging: ${packaging}</span><span style="float:right;">Rs. 150</span>
+            </div>
+            ` : ""}
+            ${has_prep_kit ? `
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:#9F1C2A;font-size:14px;">
+              <span>Optional Extra: Prep Kit</span><span style="float:right;">Rs. 100</span>
             </div>
             ` : ""}
             <div style="display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:2px solid #F2D2D6;color:#7A0D19;font-size:20px;font-weight:bold;">

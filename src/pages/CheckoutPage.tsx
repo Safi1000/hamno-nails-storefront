@@ -8,7 +8,7 @@ import { Minus, Plus } from "lucide-react";
 const PACKAGING_PRICE = 150;
 
 const CheckoutPage = () => {
-  const { items, totalPrice, updateQuantity, totalItems, clearCart } = useCart();
+  const { items, totalPrice, updateQuantity, totalItems, clearCart, packaging, setPackaging, prepKit, setPrepKit } = useCart();
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
@@ -21,11 +21,10 @@ const CheckoutPage = () => {
     notes: ""
   });
   const [submitting, setSubmitting] = useState(false);
-  const [packaging, setPackaging] = useState<"Standard" | "Pink Theme" | "Black Theme">("Standard");
-
   const currentShippingFee = totalPrice > 5000 ? 0 : 250;
   const packagingFee = packaging === "Standard" ? 0 : PACKAGING_PRICE;
-  const grandTotal = totalPrice + currentShippingFee + packagingFee;
+  const prepKitFee = prepKit ? 100 : 0;
+  const grandTotal = totalPrice + currentShippingFee + packagingFee + prepKitFee;
 
   const validatePhone = (phone: string) => {
     const pakPhoneRegex = /^((\+92)|(92)|(0))?3[0-9]{9}$/;
@@ -37,7 +36,7 @@ const CheckoutPage = () => {
   // Build WhatsApp message for online transfer
   const userInfo = form.name ? `\n\nOrder for: ${form.name}\nPhone: ${form.phone}\nAddress: ${fullAddress}` : "";
   const transferMessage = items.length > 0
-    ? `Hello! I want to place an order via Online Transfer.\n\n${items.map(i => `• ${i.product.name} × ${i.quantity} — Rs. ${i.product.price * i.quantity}`).join("\n")}\n• Packaging: ${packaging}${packaging !== "Standard" ? ` (+ Rs. ${PACKAGING_PRICE})` : ""}\n\nSubtotal: Rs. ${totalPrice}\nShipping: Rs. ${currentShippingFee}${totalPrice > 5000 ? " (FREE for orders over Rs. 5000!)" : ""}\nTotal: Rs. ${grandTotal}${userInfo}`
+    ? `Hello! I want to place an order via Online Transfer.\n\n${items.map(i => `• ${i.product.name} × ${i.quantity} — Rs. ${i.product.price * i.quantity}`).join("\n")}\n• Packaging: ${packaging}${packaging !== "Standard" ? ` (+ Rs. ${PACKAGING_PRICE})` : ""}${prepKit ? `\n• Optional Extras: Prep Kit (+ Rs. 100)` : ""}\n\nSubtotal: Rs. ${totalPrice}\nShipping: Rs. ${currentShippingFee}${totalPrice > 5000 ? " (FREE for orders over Rs. 5000!)" : ""}\nTotal: Rs. ${grandTotal}${userInfo}`
     : "Hello! I want to place an order via Online Transfer.";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -71,6 +70,7 @@ const CheckoutPage = () => {
         })),
         total: grandTotal,
         packaging_option: packaging,
+        has_prep_kit: prepKit,
         order_notes: form.notes
       };
 
@@ -103,6 +103,7 @@ const CheckoutPage = () => {
           totalPrice,
           shippingFee: currentShippingFee,
           packaging: packaging,
+          has_prep_kit: prepKit,
           grandTotal: grandTotal,
         },
       });
@@ -154,6 +155,7 @@ const CheckoutPage = () => {
         })),
         total: grandTotal,
         packaging_option: packaging,
+        has_prep_kit: prepKit,
         order_notes: form.notes,
         paymentMethod: "Online"
       };
@@ -295,6 +297,28 @@ const CheckoutPage = () => {
               onChange={() => setPackaging("Black Theme")}
             />
             <span className="font-body text-sm text-foreground shrink-0">+ Rs. {PACKAGING_PRICE}</span>
+          </label>
+        </div>
+
+        <div className="pt-4 mt-4 border-t border-border space-y-3">
+          <p className="font-body text-sm font-semibold text-foreground">Optional Extras</p>
+          <label className="flex items-center justify-between cursor-pointer group">
+            <div className="flex items-center gap-3">
+              <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${prepKit ? 'bg-primary border-primary' : 'border-neutral-200 group-hover:border-primary/50'}`}>
+                {prepKit && <div className="w-2.5 h-2.5 rounded-sm bg-white" />}
+              </div>
+              <div className="text-left">
+                <span className="font-body text-sm text-foreground block">Prep Kit</span>
+                <span className="font-body text-[10px] text-neutral-400 uppercase tracking-widest">Everything you need to apply your nails</span>
+              </div>
+            </div>
+            <input
+              type="checkbox"
+              className="hidden"
+              checked={prepKit}
+              onChange={(e) => setPrepKit(e.target.checked)}
+            />
+            <span className="font-body text-sm text-foreground shrink-0">+ Rs. 100</span>
           </label>
         </div>
 
