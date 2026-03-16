@@ -151,7 +151,7 @@ const ProductPage = () => {
                 <p className="font-body text-sm font-semibold text-foreground">Packaging Theme</p>
                 <div className="flex flex-col gap-2">
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${packaging === "Standard" ? 'border-primary' : 'border-neutral-300 group-hover:border-primary/50'}`}>
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${packaging === "Standard" ? 'border-primary' : 'border-neutral-400 group-hover:border-primary/50'}`}>
                       {packaging === "Standard" && <div className="w-2 h-2 rounded-full bg-primary" />}
                     </div>
                     <span className="font-body text-sm text-foreground flex-1">Standard Packaging</span>
@@ -159,7 +159,7 @@ const ProductPage = () => {
                     <span className="font-body text-sm text-muted-foreground">Free</span>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${packaging === "Pink Theme" ? 'border-primary' : 'border-neutral-300 group-hover:border-primary/50'}`}>
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${packaging === "Pink Theme" ? 'border-primary' : 'border-neutral-400 group-hover:border-primary/50'}`}>
                       {packaging === "Pink Theme" && <div className="w-2 h-2 rounded-full bg-primary" />}
                     </div>
                     <span className="font-body text-sm text-foreground flex-1">Pink Themed Packaging</span>
@@ -167,7 +167,7 @@ const ProductPage = () => {
                     <span className="font-body text-sm text-muted-foreground">+ Rs. 150</span>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${packaging === "Black Theme" ? 'border-primary' : 'border-neutral-300 group-hover:border-primary/50'}`}>
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${packaging === "Black Theme" ? 'border-primary' : 'border-neutral-400 group-hover:border-primary/50'}`}>
                       {packaging === "Black Theme" && <div className="w-2 h-2 rounded-full bg-primary" />}
                     </div>
                     <span className="font-body text-sm text-foreground flex-1">Black Themed Packaging</span>
@@ -180,8 +180,8 @@ const ProductPage = () => {
               <div className="space-y-3 pt-3 border-t border-neutral-100/50">
                 <p className="font-body text-sm font-semibold text-foreground">Optional Extras</p>
                 <label className="flex items-center gap-3 cursor-pointer group">
-                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${prepKit ? 'bg-primary border-primary' : 'border-neutral-300 group-hover:border-primary/50'}`}>
-                    {prepKit && <div className="w-2 h-2 rounded-sm bg-primary-foreground" />}
+                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${prepKit ? 'bg-primary border-primary' : 'border-neutral-400 group-hover:border-primary/50'}`}>
+                    {prepKit && <div className="w-2 h-2 rounded-full bg-white" />}
                   </div>
                   <span className="font-body text-sm text-foreground flex-1">Add Prep Kit</span>
                   <input type="checkbox" checked={prepKit} onChange={(e) => setPrepKit(e.target.checked)} className="hidden" />
