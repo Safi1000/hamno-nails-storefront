@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/admin/api/:match*",
-      "destination": "https://YOUR_BACKEND_URL.onrender.com/api/:match*"
+      "destination": "https://hamno-nails-admin.onrender.com/api/:match*"
     },
     {
       "source": "/(.*)",
