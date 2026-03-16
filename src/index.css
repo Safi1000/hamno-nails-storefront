@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'TAN Songbird';
+  src: url('https://db.onlinewebfonts.com/t/b919d363d69947f6314842d039f99763.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 349 40% 90%;
+    --foreground: 350 80% 17%;
+
+    --card: 350 100% 98%;
+    --card-foreground: 350 80% 17%;
+
+    --popover: 350 100% 98%;
+    --popover-foreground: 350 80% 17%;
+
+    --primary: 350 80% 27%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 350 68% 37%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 349 35% 87%;
+    --muted-foreground: 350 40% 40%;
+
+    --accent: 350 100% 98%;
+    --accent-foreground: 350 80% 27%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 349 30% 85%;
+    --input: 349 30% 85%;
+    --ring: 350 80% 27%;
+
+    --radius: 18px;
+
+    --sidebar-background: 350 100% 98%;
+    --sidebar-foreground: 350 80% 17%;
+    --sidebar-primary: 350 80% 27%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 349 40% 90%;
+    --sidebar-accent-foreground: 350 80% 17%;
+    --sidebar-border: 349 30% 85%;
+    --sidebar-ring: 350 80% 27%;
+
+    --whatsapp: 142 68% 49%;
+    --gradient-bg: linear-gradient(180deg, #F2D2D6 0%, #E5B6BB 100%);
+    --shadow-cherry: 0 10px 30px rgba(122, 13, 25, 0.12);
+
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(180deg, #F2D2D6 0%, #E5B6BB 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .btn-press {
+    @apply transition-transform duration-150 active:scale-[0.98];
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .image-zoom {
+    @apply transition-transform duration-500 hover:scale-110;
+  }
+
+  .cherry-shadow {
+    box-shadow: 0 10px 30px rgba(122, 13, 25, 0.12);
+  }
+}
+
+/* Announcement bar marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
