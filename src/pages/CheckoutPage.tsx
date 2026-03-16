@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { Minus, Plus } from "lucide-react";
 
-const GIFT_BOX_PRICE = 250;
+const PACKAGING_PRICE = 150;
 
 const CheckoutPage = () => {
   const { items, totalPrice, updateQuantity, totalItems, clearCart } = useCart();
@@ -21,10 +21,11 @@ const CheckoutPage = () => {
     notes: ""
   });
   const [submitting, setSubmitting] = useState(false);
-  const [giftBox, setGiftBox] = useState(false);
+  const [packaging, setPackaging] = useState<"Standard" | "Pink Theme" | "Black Theme">("Standard");
 
   const currentShippingFee = totalPrice > 5000 ? 0 : 250;
-  const grandTotal = totalPrice + currentShippingFee + (giftBox ? GIFT_BOX_PRICE : 0);
+  const packagingFee = packaging === "Standard" ? 0 : PACKAGING_PRICE;
+  const grandTotal = totalPrice + currentShippingFee + packagingFee;
 
   const validatePhone = (phone: string) => {
     const pakPhoneRegex = /^((\+92)|(92)|(0))?3[0-9]{9}$/;
@@ -36,7 +37,7 @@ const CheckoutPage = () => {
   // Build WhatsApp message for online transfer
   const userInfo = form.name ? `\n\nOrder for: ${form.name}\nPhone: ${form.phone}\nAddress: ${fullAddress}` : "";
   const transferMessage = items.length > 0
-    ? `Hello! I want to place an order via Online Transfer.\n\n${items.map(i => `• ${i.product.name} × ${i.quantity} — Rs. ${i.product.price * i.quantity}`).join("\n")}${giftBox ? `\n• Luxury Gift Box — Rs. ${GIFT_BOX_PRICE}` : ""}\n\nSubtotal: Rs. ${totalPrice}\nShipping: Rs. ${currentShippingFee}${totalPrice > 5000 ? " (FREE for orders over Rs. 5000!)" : ""}\nTotal: Rs. ${grandTotal}${userInfo}`
+    ? `Hello! I want to place an order via Online Transfer.\n\n${items.map(i => `• ${i.product.name} × ${i.quantity} — Rs. ${i.product.price * i.quantity}`).join("\n")}\n• Packaging: ${packaging}${packaging !== "Standard" ? ` (+ Rs. ${PACKAGING_PRICE})` : ""}\n\nSubtotal: Rs. ${totalPrice}\nShipping: Rs. ${currentShippingFee}${totalPrice > 5000 ? " (FREE for orders over Rs. 5000!)" : ""}\nTotal: Rs. ${grandTotal}${userInfo}`
     : "Hello! I want to place an order via Online Transfer.";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -69,7 +70,7 @@ const CheckoutPage = () => {
           thumbnail: i.product.images[0]
         })),
         total: grandTotal,
-        hasLuxuryGiftBox: giftBox,
+        packaging_option: packaging,
         order_notes: form.notes
       };
 
@@ -101,7 +102,7 @@ const CheckoutPage = () => {
           })),
           totalPrice,
           shippingFee: currentShippingFee,
-          giftBox: giftBox ? GIFT_BOX_PRICE : 0,
+          packaging: packaging,
           grandTotal: grandTotal,
         },
       });
@@ -152,7 +153,7 @@ const CheckoutPage = () => {
           thumbnail: i.product.images[0]
         })),
         total: grandTotal,
-        hasLuxuryGiftBox: giftBox,
+        packaging_option: packaging,
         order_notes: form.notes,
         paymentMethod: "Online"
       };
@@ -230,24 +231,70 @@ const CheckoutPage = () => {
           </span>
         </div>
 
-        <div className="pt-4 mt-4 border-t border-border">
+        <div className="pt-4 mt-4 border-t border-border space-y-3">
+          <p className="font-body text-sm font-semibold text-foreground">Packaging Option</p>
+          
           <label className="flex items-center justify-between cursor-pointer group">
             <div className="flex items-center gap-3">
-              <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${giftBox ? 'bg-primary border-primary' : 'border-neutral-200 group-hover:border-primary/50'}`}>
-                {giftBox && <div className="w-2 h-2 rounded-full bg-white" />}
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${packaging === "Standard" ? 'border-primary' : 'border-neutral-200 group-hover:border-primary/50'}`}>
+                {packaging === "Standard" && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
               </div>
               <div className="text-left">
-                <span className="font-body text-sm text-foreground block">Luxury Gift Box Packaging</span>
-                <span className="font-body text-[10px] text-neutral-400 uppercase tracking-widest">Premium aesthetic box for gifting</span>
+                <span className="font-body text-sm text-foreground block">Standard Packaging</span>
+                <span className="font-body text-[10px] text-neutral-400 uppercase tracking-widest">Included with all orders free of charge</span>
               </div>
             </div>
             <input
-              type="checkbox"
+              type="radio"
+              name="packaging"
+              value="Standard"
               className="hidden"
-              checked={giftBox}
-              onChange={() => setGiftBox(!giftBox)}
+              checked={packaging === "Standard"}
+              onChange={() => setPackaging("Standard")}
             />
-            <span className="font-body text-sm text-foreground shrink-0">+ Rs. {GIFT_BOX_PRICE}</span>
+            <span className="font-body text-sm text-foreground shrink-0">Free</span>
+          </label>
+
+          <label className="flex items-center justify-between cursor-pointer group">
+            <div className="flex items-center gap-3">
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${packaging === "Pink Theme" ? 'border-primary' : 'border-neutral-200 group-hover:border-primary/50'}`}>
+                {packaging === "Pink Theme" && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
+              </div>
+              <div className="text-left">
+                <span className="font-body text-sm text-foreground block">Pink Themed Packaging</span>
+                <span className="font-body text-[10px] text-neutral-400 uppercase tracking-widest">Aesthetic custom pink studio box</span>
+              </div>
+            </div>
+            <input
+              type="radio"
+              name="packaging"
+              value="Pink Theme"
+              className="hidden"
+              checked={packaging === "Pink Theme"}
+              onChange={() => setPackaging("Pink Theme")}
+            />
+            <span className="font-body text-sm text-foreground shrink-0">+ Rs. {PACKAGING_PRICE}</span>
+          </label>
+
+          <label className="flex items-center justify-between cursor-pointer group">
+            <div className="flex items-center gap-3">
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${packaging === "Black Theme" ? 'border-primary' : 'border-neutral-200 group-hover:border-primary/50'}`}>
+                {packaging === "Black Theme" && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
+              </div>
+              <div className="text-left">
+                <span className="font-body text-sm text-foreground block">Black Themed Packaging</span>
+                <span className="font-body text-[10px] text-neutral-400 uppercase tracking-widest">Aesthetic custom black studio box</span>
+              </div>
+            </div>
+            <input
+              type="radio"
+              name="packaging"
+              value="Black Theme"
+              className="hidden"
+              checked={packaging === "Black Theme"}
+              onChange={() => setPackaging("Black Theme")}
+            />
+            <span className="font-body text-sm text-foreground shrink-0">+ Rs. {PACKAGING_PRICE}</span>
           </label>
         </div>
 
