@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#1A1818] text-[#FCF9F7] pt-20 pb-10 border-t border-neutral-800">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
           
           {/* Brand Section */}
           <div className="space-y-6">
@@ -46,32 +46,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support */}
-          <div>
-            <h3 className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-white mb-6">Support</h3>
-            <ul className="space-y-4">
-              <li>
-                <a href="https://wa.me/923701562433" target="_blank" rel="noreferrer" className="font-body text-sm text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group">
-                  Track Order <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity translate-y-1 group-hover:translate-y-0" />
-                </a>
-              </li>
-              <li>
-                <span className="font-body text-sm text-neutral-400 cursor-pointer hover:text-white transition-colors flex items-center gap-1 group">
-                  Shipping Policy
-                </span>
-              </li>
-              <li>
-                <span className="font-body text-sm text-neutral-400 cursor-pointer hover:text-white transition-colors flex items-center gap-1 group">
-                  Refund & Exchanges
-                </span>
-              </li>
-              <li>
-                <span className="font-body text-sm text-neutral-400 cursor-pointer hover:text-white transition-colors flex items-center gap-1 group">
-                  Sizing Guide
-                </span>
-              </li>
-            </ul>
-          </div>
 
           {/* Contact */}
           <div>
@@ -102,14 +76,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-neutral-500 text-center md:text-left">
+        <div className="pt-8 border-t border-neutral-800 flex items-center justify-center">
+          <p className="font-body text-xs text-neutral-500 text-center">
             &copy; {new Date().getFullYear()} Nails By Hamna. All rights reserved.
           </p>
-          <div className="flex gap-4">
-            <span className="font-body text-xs text-neutral-500 cursor-pointer hover:text-white transition-colors">Privacy Policy</span>
-            <span className="font-body text-xs text-neutral-500 cursor-pointer hover:text-white transition-colors">Terms of Service</span>
-          </div>
         </div>
       </div>
     </footer>
