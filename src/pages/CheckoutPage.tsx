@@ -200,26 +200,35 @@ const CheckoutPage = () => {
       {/* Order summary */}
       <div className="bg-card rounded-lg p-4 cherry-shadow mb-6">
         {items.map((item) => (
-          <div key={item.product.id} className="flex items-center justify-between py-3 border-b border-border last:border-0">
-            <div className="flex flex-col gap-1">
-              <span className="font-body text-sm text-foreground">{item.product.name}</span>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                  className="w-6 h-6 rounded-full border border-primary/20 flex items-center justify-center text-primary/60 hover:border-primary hover:text-primary transition-all"
-                >
-                  <Minus className="w-3 h-3" />
-                </button>
-                <span className="font-body text-sm text-foreground w-4 text-center">{item.quantity}</span>
-                <button
-                  onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                  className="w-6 h-6 rounded-full border border-primary/20 flex items-center justify-center text-primary/60 hover:border-primary hover:text-primary transition-all"
-                >
-                  <Plus className="w-3 h-3" />
-                </button>
-              </div>
+          <div key={item.product.id} className="flex gap-4 py-4 border-b border-border last:border-0">
+            <div className="w-16 h-16 shrink-0 rounded-md overflow-hidden bg-neutral-100 border border-neutral-100">
+              {item.product.images && item.product.images.length > 0 ? (
+                <img src={item.product.images[0]} alt={item.product.name} className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-xl">💅</div>
+              )}
             </div>
-            <span className="font-body text-sm text-foreground">Rs. {item.product.price * item.quantity}</span>
+            <div className="flex flex-1 items-center justify-between">
+              <div className="flex flex-col justify-between h-full py-0.5">
+                <span className="font-body text-sm text-foreground font-medium">{item.product.name}</span>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                    className="w-6 h-6 rounded-full border border-primary/20 flex items-center justify-center text-primary/60 hover:border-primary hover:text-primary transition-all bg-white hover:bg-white"
+                  >
+                    <Minus className="w-3 h-3" />
+                  </button>
+                  <span className="font-body text-xs text-foreground font-medium w-3 text-center">{item.quantity}</span>
+                  <button
+                    onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                    className="w-6 h-6 rounded-full border border-primary/20 flex items-center justify-center text-primary/60 hover:border-primary hover:text-primary transition-all bg-white hover:bg-white"
+                  >
+                    <Plus className="w-3 h-3" />
+                  </button>
+                </div>
+              </div>
+              <span className="font-body text-sm text-foreground font-semibold">Rs. {item.product.price * item.quantity}</span>
+            </div>
           </div>
         ))}
         <div className="flex justify-between font-body text-sm text-muted-foreground pt-2">
