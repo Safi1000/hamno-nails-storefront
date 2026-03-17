@@ -20,17 +20,17 @@ const Index = () => {
           .from('products')
           .select('*')
           .order('created_at', { ascending: false });
-          
+
         if (error) throw error;
-        
+
         if (data) {
           const formattedProducts = data.map(item => ({
-             ...item,
-             nailCount: item.nail_count,
-             hasPrepKit: item.has_prep_kit,
-             stockStatus: item.stock_status,
+            ...item,
+            nailCount: item.nail_count,
+            hasPrepKit: item.has_prep_kit,
+            stockStatus: item.stock_status,
           }));
-          
+
           setFeatured(formattedProducts.filter((p: any) => p.category.toLowerCase() === "featured").slice(0, 8));
           setNewArrivals(formattedProducts.filter((p: any) => p.category.toLowerCase() === "new arrivals" || p.category.toLowerCase() === "new").slice(0, 4));
         }
@@ -58,7 +58,7 @@ const Index = () => {
               Handcrafted with love
             </span>
             <h1 className="font-display text-5xl md:text-8xl font-light mb-6 tracking-tight leading-none text-foreground">
-              Nails By <br /> <span className="italic font-serif">Hamno</span>
+              Nails By <br /> <span className="italic font-serif">Hamna</span>
             </h1>
             <p className="font-body text-lg md:text-xl text-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed font-light px-4">
               Luxury, reusable press-on nails for the modern aesthetic. Hand-painted to match your unique vision.

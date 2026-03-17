@@ -10,12 +10,12 @@ const Header = () => {
     <header className="sticky top-[36px] z-40 bg-accent/80 backdrop-blur-md cherry-shadow">
       <div className="container flex items-center justify-between py-3">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="NailsByHamno" className="h-10 w-10 md:h-12 md:w-12 rounded-lg object-cover" />
+          <img src={logo} alt="NailsByHamna" className="h-10 w-10 md:h-12 md:w-12 rounded-lg object-cover" />
         </Link>
 
         <div className="flex items-center gap-4 md:gap-6">
-          <Link 
-            to="/products" 
+          <Link
+            to="/products"
             className="bg-primary text-white px-5 py-2 rounded-full text-[9px] md:text-xs uppercase tracking-[0.2em] font-bold hover:bg-primary/90 transition-all shadow-sm"
           >
             Shop
@@ -38,9 +38,9 @@ const Header = () => {
               </span>
             )}
           </button>
-          
-          <Link 
-            to="/checkout" 
+
+          <Link
+            to="/checkout"
             className="bg-secondary text-primary-foreground px-5 py-2 rounded-full text-[9px] md:text-xs uppercase tracking-[0.2em] font-bold hover:bg-secondary/90 transition-all shadow-sm"
           >
             Checkout

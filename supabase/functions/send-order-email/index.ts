@@ -20,7 +20,7 @@ serve(async (req) => {
     }
 
     const htmlItems = items
-      .map((i: { name: string; quantity: number; price: number }) => 
+      .map((i: { name: string; quantity: number; price: number }) =>
         `<tr><td style="padding:12px 8px;border-bottom:1px solid #F2D2D6;color:#4A4A4A;font-size:14px;">${i.name}</td><td style="padding:12px 8px;border-bottom:1px solid #F2D2D6;text-align:center;color:#4A4A4A;font-size:14px;">${i.quantity}</td><td style="padding:12px 8px;border-bottom:1px solid #F2D2D6;text-align:right;color:#7A0D19;font-weight:600;font-size:14px;">Rs. ${i.price * i.quantity}</td></tr>`
       )
       .join("");
@@ -31,7 +31,7 @@ serve(async (req) => {
       <div style="font-family:'Poppins',Arial,sans-serif;max-width:600px;margin:0 auto;background:#FFF6F7;border-radius:24px;padding:40px;border:1px solid #F2D2D6;">
         <div style="text-align:center;margin-bottom:32px;">
           <h1 style="color:#7A0D19;font-family:'Playfair Display',Georgia,serif;font-size:28px;margin-bottom:8px;">New Order Received 💗</h1>
-          <p style="color:#9F1C2A;font-size:14px;letter-spacing:1px;text-transform:uppercase;">NailsByHamno Studio</p>
+          <p style="color:#9F1C2A;font-size:14px;letter-spacing:1px;text-transform:uppercase;">NailsByHamna Studio</p>
         </div>
         
         <div style="background:white;border-radius:18px;padding:24px;margin-bottom:24px;box-shadow:0 10px 30px rgba(122,13,25,0.05);border:1px solid rgba(242,210,214,0.5);">
@@ -83,7 +83,7 @@ serve(async (req) => {
         
         <div style="text-align:center;color:#9F1C2A;font-size:12px;opacity:0.6;">
           <p>Payment Method: ${paymentMethod}</p>
-          <p>© 2026 NailsByHamno Studio</p>
+          <p>© 2026 NailsByHamna Studio</p>
         </div>
       </div>
     `;
@@ -95,7 +95,7 @@ serve(async (req) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "NailsByHamno <orders@hamnostudio.store>",
+        from: "NailsByHamna <orders@hamnostudio.store>",
         to: [adminEmail || "hamnan03@gmail.com"],
         subject: `✨ New Order — ${name}`,
         html: emailHtml,
