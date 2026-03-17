@@ -16,6 +16,7 @@ const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState("featured");
+  const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -50,6 +51,10 @@ const ProductsPage = () => {
   const sortedProducts = useMemo(() => {
     let result = [...products];
 
+    if (activeCategory !== "All") {
+      result = result.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase());
+    }
+
     if (sortBy === "price-low") {
       result.sort((a, b) => a.price - b.price);
     } else if (sortBy === "price-high") {
@@ -59,7 +64,7 @@ const ProductsPage = () => {
     }
 
     return result;
-  }, [sortBy, products]);
+  }, [sortBy, activeCategory, products]);
 
   return (
     <div className="container py-8 animate-fade-in min-h-screen">
@@ -82,6 +87,23 @@ const ProductsPage = () => {
             </SelectContent>
           </Select>
         </div>
+      </div>
+
+      {/* Category Filters */}
+      <div className="flex flex-wrap gap-2 mb-10 items-center md:justify-start">
+        {["All", "Featured", "New Arrivals", "Premium Bridal Sets"].map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all ${
+              activeCategory === cat 
+                ? "bg-primary text-white cherry-shadow" 
+                : "bg-white text-neutral-600 hover:bg-neutral-50 border border-neutral-200"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
       </div>
 
       {isLoading ? (

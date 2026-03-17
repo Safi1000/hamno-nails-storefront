@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { useCart } from "@/context/CartContext";
 import QuantitySelector from "@/components/QuantitySelector";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import ProductCard from "@/components/ProductCard";
 
@@ -118,9 +118,26 @@ const ProductPage = () => {
             key={selectedImage}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="aspect-square rounded-lg overflow-hidden cherry-shadow mb-4"
+            className="aspect-square rounded-lg overflow-hidden cherry-shadow mb-4 relative group"
           >
             <img src={product.images[selectedImage]} alt={product.name} className="w-full h-full object-cover" />
+            
+            {product.images.length > 1 && (
+              <>
+                <button 
+                  onClick={(e) => { e.preventDefault(); setSelectedImage((prev) => (prev === 0 ? product.images.length - 1 : prev - 1)); }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white shadow-md z-20 btn-press"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+                <button 
+                  onClick={(e) => { e.preventDefault(); setSelectedImage((prev) => (prev === product.images.length - 1 ? 0 : prev + 1)); }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white shadow-md z-20 btn-press"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </>
+            )}
           </motion.div>
           <div className="grid grid-cols-4 gap-2">
             {product.images.map((img, i) => (
