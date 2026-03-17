@@ -33,18 +33,34 @@ const AnnouncementBar = () => {
       className="overflow-hidden py-2 sticky top-0 z-50 transition-colors duration-300"
       style={{ backgroundColor: config.backgroundColor }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full text-center px-4"
-      >
-        <span 
-          className="text-sm font-body font-medium"
-          style={{ color: config.textColor }}
-        >
-          {config.text}
-        </span>
-      </motion.div>
+      <div className="w-full relative flex whitespace-nowrap overflow-hidden">
+        <div className="animate-marquee inline-block relative py-1">
+          <span 
+            className="text-sm font-body font-medium px-8"
+            style={{ color: config.textColor }}
+          >
+            {config.text}
+          </span>
+          <span 
+            className="text-sm font-body font-medium px-8"
+            style={{ color: config.textColor }}
+          >
+            {config.text}
+          </span>
+          <span 
+            className="text-sm font-body font-medium px-8"
+            style={{ color: config.textColor }}
+          >
+            {config.text}
+          </span>
+          <span 
+            className="text-sm font-body font-medium px-8"
+            style={{ color: config.textColor }}
+          >
+            {config.text}
+          </span>
+        </div>
+      </div>
     </div>
   );
 };
