@@ -93,7 +93,7 @@ const CheckoutPage = () => {
           phone: form.phone,
           address: fullAddress,
           notes: form.notes,
-          adminEmail: "hamnan03@gmail.com",
+          adminEmail: "blushyhamna@gmail.com",
           paymentMethod: "Cash on Delivery",
           items: items.map((i) => ({
             name: i.product.name,
@@ -172,7 +172,7 @@ const CheckoutPage = () => {
 
       // 2. Open WhatsApp
       window.open(`https://wa.me/923701562433?text=${encodeURIComponent(transferMessage)}`, '_blank');
-      
+
       // 3. Clear cart & redirect
       clearCart();
       navigate("/thank-you");
@@ -244,7 +244,7 @@ const CheckoutPage = () => {
 
         <div className="pt-4 mt-4 border-t border-border space-y-3">
           <p className="font-body text-sm font-semibold text-foreground">Packaging Option</p>
-          
+
           <label className="flex items-center justify-between cursor-pointer group">
             <div className="flex items-center gap-3">
               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${packaging === "Standard" ? 'border-primary' : 'border-neutral-200 group-hover:border-primary/50'}`}>

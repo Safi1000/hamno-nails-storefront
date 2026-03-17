@@ -96,7 +96,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         from: "NailsByHamna <orders@hamnostudio.store>",
-        to: [adminEmail || "hamnan03@gmail.com"],
+        to: [adminEmail || "blushyhamna@gmail.com"],
         subject: `✨ New Order — ${name}`,
         html: emailHtml,
       }),

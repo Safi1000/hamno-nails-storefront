@@ -16,7 +16,7 @@ const WhatsAppButton = ({ productName, className = "", outOfStock = false }: Wha
     return (
       <button
         disabled
-        className={`flex items-center justify-center gap-2 bg-whatsapp text-primary-foreground font-body py-3 rounded-lg btn-press opacity-50 cursor-not-allowed w-full ${className}`}
+        className={`flex items-center justify-center gap-2 bg-whatsapp text-primary-foreground font-body py-3 rounded-none btn-press opacity-50 cursor-not-allowed w-full ${className}`}
       >
         <MessageCircle className="h-5 w-5" />
         Quick Order on WhatsApp
@@ -29,7 +29,7 @@ const WhatsAppButton = ({ productName, className = "", outOfStock = false }: Wha
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`flex items-center justify-center gap-2 bg-whatsapp text-primary-foreground font-body py-3 rounded-lg btn-press hover:opacity-90 transition-opacity w-full ${className}`}
+      className={`flex items-center justify-center gap-2 bg-whatsapp text-primary-foreground font-body py-3 rounded-none btn-press hover:opacity-90 transition-opacity w-full ${className}`}
     >
       <MessageCircle className="h-5 w-5" />
       Quick Order on WhatsApp

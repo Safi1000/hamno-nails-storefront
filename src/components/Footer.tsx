@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-[#1A1818] text-[#FCF9F7] pt-20 pb-10 border-t border-neutral-800">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
-          
+
           {/* Brand Section */}
           <div className="space-y-6">
             <Link to="/" className="inline-block">
@@ -18,9 +18,9 @@ const Footer = () => {
               Luxury, reusable press-on nails handcrafted for the modern aesthetic. Elevate your everyday style with artisan designs.
             </p>
             <div className="flex items-center gap-4 pt-2">
-              <a 
-                href="https://instagram.com/hamnanails" 
-                target="_blank" 
+              <a
+                href="https://instagram.com/hamnanails"
+                target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black transition-all hover:border-white"
               >
@@ -66,8 +66,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-neutral-500 shrink-0" />
-                <a href="mailto:hamnan03@gmail.com" className="font-body text-sm text-neutral-400 hover:text-white transition-colors">
-                  hamnan03@gmail.com
+                <a href="mailto:blushyhamna@gmail.com" className="font-body text-sm text-neutral-400 hover:text-white transition-colors">
+                  blushyhamna@gmail.com
                 </a>
               </li>
             </ul>
