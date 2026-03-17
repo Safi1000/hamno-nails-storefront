@@ -43,11 +43,6 @@ const Footer = () => {
                   Curated Sets <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity translate-y-1 group-hover:translate-y-0" />
                 </Link>
               </li>
-              <li>
-                <Link to="/favorites" className="font-body text-sm text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group">
-                  My Favorites <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity translate-y-1 group-hover:translate-y-0" />
-                </Link>
-              </li>
             </ul>
           </div>
 

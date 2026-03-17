@@ -11,7 +11,6 @@ import CartDrawer from "@/components/CartDrawer";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import ProductsPage from "./pages/ProductsPage";
-import FavoritesPage from "./pages/FavoritesPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import NotFound from "./pages/NotFound";
@@ -36,20 +35,23 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <AnnouncementBar />
-          <Header />
-          <CartDrawer />
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/favorites" element={<FavoritesPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/thank-you" element={<ThankYouPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
+          <div className="min-h-screen flex flex-col">
+            <AnnouncementBar />
+            <Header />
+            <CartDrawer />
+            <ScrollToTop />
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/thank-you" element={<ThankYouPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
         </BrowserRouter>
       </CartProvider>
     </TooltipProvider>

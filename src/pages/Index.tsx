@@ -225,41 +225,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Compact Boutique Footer */}
-      <footer className="py-12 bg-white border-t border-neutral-100">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <h3 className="font-tan text-3xl md:text-4xl font-light tracking-tight text-foreground">
-              NailsByHamno
-            </h3>
-
-            <nav className="flex items-center gap-8">
-              <Link to="/products" className="text-[9px] uppercase tracking-[0.4em] font-semibold text-primary/60 hover:text-primary transition-all">
-                Shop
-              </Link>
-              <Link to="/" className="text-[9px] uppercase tracking-[0.4em] font-semibold text-primary/60 hover:text-primary transition-all">
-                Home
-              </Link>
-              <a
-                href="https://instagram.com/nailsbyhamno"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary/60 hover:text-primary transition-all"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-            </nav>
-
-            <div className="flex flex-col md:flex-row items-center gap-4 text-[9px] text-primary/40 uppercase tracking-[0.1em] font-body">
-              <p>© 2026</p>
-              <span className="hidden md:block opacity-20">•</span>
-              <p>Nationwide Delivery</p>
-              <Heart className="w-2.5 h-2.5 text-primary/20" />
-            </div>
-          </div>
-        </div>
-      </footer>
-
       <WhatsAppButton />
     </div>
   );

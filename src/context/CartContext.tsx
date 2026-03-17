@@ -5,14 +5,11 @@ import { toast } from "sonner";
 interface CartContextType {
   items: CartItem[];
   isOpen: boolean;
-  favorites: string[];
   addToCart: (product: Product) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   toggleCart: () => void;
   closeCart: () => void;
-  toggleFavorite: (productId: string) => void;
-  isFavorite: (productId: string) => boolean;
   
   // Global Add-ons
   packaging: "Standard" | "Pink Theme" | "Black Theme";
@@ -30,7 +27,6 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [favorites, setFavorites] = useState<string[]>([]);
   
   // Global Add-ons
   const [packaging, setPackaging] = useState<"Standard" | "Pink Theme" | "Black Theme">("Standard");
@@ -69,22 +65,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const closeCart = useCallback(() => setIsOpen(false), []);
   const clearCart = useCallback(() => setItems([]), []);
 
-  const toggleFavorite = useCallback((productId: string) => {
-    setFavorites((prev) =>
-      prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId]
-    );
-  }, []);
-
-  const isFavorite = useCallback((productId: string) => favorites.includes(productId), [favorites]);
-
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = items.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
 
   return (
     <CartContext.Provider
       value={{
-        items, isOpen, favorites, addToCart, removeFromCart, updateQuantity,
-        toggleCart, closeCart, toggleFavorite, isFavorite, 
+        items, isOpen, addToCart, removeFromCart, updateQuantity,
+        toggleCart, closeCart,
         packaging, setPackaging, prepKit, setPrepKit,
         totalItems, totalPrice, clearCart,
       }}
