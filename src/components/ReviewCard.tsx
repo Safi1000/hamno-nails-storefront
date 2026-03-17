@@ -8,15 +8,15 @@ const ReviewCard = ({ review }: { review: Review }) => {
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className="bg-accent rounded-lg p-5 cherry-shadow min-w-[260px]"
+      className="bg-accent rounded-lg p-5 cherry-shadow min-w-[260px] h-full flex flex-col"
     >
       <div className="flex gap-0.5 mb-2">
         {Array.from({ length: review.stars }).map((_, i) => (
           <Star key={i} className="h-4 w-4 fill-primary text-primary" />
         ))}
       </div>
-      <p className="font-body text-sm text-foreground italic mb-3">"{review.text}"</p>
-      <p className="font-body text-xs text-secondary font-semibold">– {review.author}</p>
+      <p className="font-body text-sm text-foreground italic mb-3 flex-grow">"{review.text}"</p>
+      <p className="font-body text-xs text-secondary font-semibold mt-auto">– {review.author}</p>
     </motion.div>
   );
 };

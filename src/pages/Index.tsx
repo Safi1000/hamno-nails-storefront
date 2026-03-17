@@ -11,6 +11,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 const Index = () => {
   const [featured, setFeatured] = useState<Product[]>([]);
   const [newArrivals, setNewArrivals] = useState<Product[]>([]);
+  const [premiumBridal, setPremiumBridal] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const Index = () => {
 
           setFeatured(formattedProducts.filter((p: any) => p.category.toLowerCase() === "featured").slice(0, 8));
           setNewArrivals(formattedProducts.filter((p: any) => p.category.toLowerCase() === "new arrivals" || p.category.toLowerCase() === "new").slice(0, 4));
+          setPremiumBridal(formattedProducts.filter((p: any) => p.category.toLowerCase() === "premium bridal sets").slice(0, 8));
         }
       } catch (err) {
         console.error('Error fetching products:', err);
@@ -119,6 +121,42 @@ const Index = () => {
                 </motion.div>
               ))}
               {featured.length === 0 && <p className="text-gray-500 text-center w-full">No featured products yet.</p>}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Premium Bridal Sets - Horizontal Scroll (2 in a row) */}
+      <section className="py-20 bg-white border-t border-neutral-100">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-baseline justify-between mb-12">
+            <h2 className="font-display text-3xl md:text-5xl font-light text-foreground">
+              Premium Bridal <span className="italic">Sets</span>
+            </h2>
+            <Link to="/products" className="text-xs uppercase tracking-widest text-primary font-semibold flex items-center gap-2 mt-4 md:mt-0">
+              Explore All <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+
+          {isLoading ? (
+            <div className="flex justify-center py-10">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : (
+            <div className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+              {premiumBridal.map((p, i) => (
+                <motion.div
+                  key={p.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="shrink-0 w-[calc(50%-8px)] md:w-[calc(25%-12px)] snap-start"
+                >
+                  <ProductCard product={p} />
+                </motion.div>
+              ))}
+              {premiumBridal.length === 0 && <p className="text-gray-500 text-center w-full">No premium bridal sets yet.</p>}
             </div>
           )}
         </div>
