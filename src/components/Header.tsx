@@ -10,7 +10,7 @@ const Header = () => {
     <header className="sticky top-[36px] z-40 bg-accent/80 backdrop-blur-md cherry-shadow">
       <div className="container flex items-center justify-between py-3">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="NailsByHamna" className="h-14 w-14 md:h-16 md:w-16 rounded-lg object-cover" />
+          <img src={logo} alt="NailsByHamna" className="h-14 w-18 md:h-16 md:w-18 rounded-lg object-cover" />
         </Link>
 
         <div className="flex items-center gap-4 md:gap-6">
