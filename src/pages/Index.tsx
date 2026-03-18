@@ -32,9 +32,11 @@ const Index = () => {
             stockStatus: item.stock_status,
           }));
 
-          setFeatured(formattedProducts.filter((p: any) => p.category.toLowerCase() === "featured").slice(0, 8));
-          setNewArrivals(formattedProducts.filter((p: any) => p.category.toLowerCase() === "new arrivals" || p.category.toLowerCase() === "new").slice(0, 4));
-          setPremiumBridal(formattedProducts.filter((p: any) => p.category.toLowerCase() === "premium bridal sets").slice(0, 8));
+          const cats = (p: any) => Array.isArray(p.category) ? p.category.map((c: string) => c.toLowerCase()) : [String(p.category).toLowerCase()];
+
+          setFeatured(formattedProducts.filter((p: any) => cats(p).includes("featured")).slice(0, 8));
+          setNewArrivals(formattedProducts.filter((p: any) => cats(p).includes("new arrivals") || cats(p).includes("new")).slice(0, 4));
+          setPremiumBridal(formattedProducts.filter((p: any) => cats(p).includes("premium bridal sets")).slice(0, 8));
         }
       } catch (err) {
         console.error('Error fetching products:', err);

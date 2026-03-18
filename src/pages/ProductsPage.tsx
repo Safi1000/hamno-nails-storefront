@@ -51,8 +51,10 @@ const ProductsPage = () => {
   const sortedProducts = useMemo(() => {
     let result = [...products];
 
+    const getCats = (p: any): string[] => Array.isArray(p.category) ? p.category.map((c: string) => c.toLowerCase()) : [String(p.category).toLowerCase()];
+
     if (activeCategory !== "All") {
-      result = result.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase());
+      result = result.filter(p => getCats(p).includes(activeCategory.toLowerCase()));
     }
 
     if (sortBy === "price-low") {
@@ -60,7 +62,7 @@ const ProductsPage = () => {
     } else if (sortBy === "price-high") {
       result.sort((a, b) => b.price - a.price);
     } else if (sortBy === "featured") {
-      result = result.sort((a, b) => (a.category === "featured" ? -1 : 1));
+      result = result.sort((a, b) => (getCats(a).includes("featured") ? -1 : 1));
     }
 
     return result;

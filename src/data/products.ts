@@ -10,7 +10,7 @@ export interface Product {
   name: string;
   price: number;
   images: string[];
-  category: "featured" | "new";
+  category: string[];
   description: string;
   stockStatus?: string;
 }
@@ -21,7 +21,7 @@ export const products: Product[] = [
     name: "Pink Glitter Dream",
     price: 1500,
     images: [nails1, nails3, nails5, nails6],
-    category: "featured",
+    category: ["featured"],
     description: "Stunning pink glitter press-on nails that sparkle with every move. Handcrafted with love.",
   },
   {
@@ -29,7 +29,7 @@ export const products: Product[] = [
     name: "French Elegance",
     price: 1200,
     images: [nails2, nails1, nails4, nails6],
-    category: "featured",
+    category: ["featured"],
     description: "Classic French tip press-on nails for a timeless, sophisticated look.",
   },
   {
@@ -37,7 +37,7 @@ export const products: Product[] = [
     name: "Cherry & Gold",
     price: 1800,
     images: [nails3, nails1, nails5, nails2],
-    category: "featured",
+    category: ["featured"],
     description: "Deep cherry red nails with luxurious gold flake accents. Perfect for special occasions.",
   },
   {
@@ -45,7 +45,7 @@ export const products: Product[] = [
     name: "Floral Pastel",
     price: 1400,
     images: [nails4, nails2, nails6, nails5],
-    category: "featured",
+    category: ["featured"],
     description: "Delicate pastel press-on nails with hand-painted floral designs.",
   },
   {
@@ -53,7 +53,7 @@ export const products: Product[] = [
     name: "Ombré Sparkle",
     price: 1600,
     images: [nails5, nails1, nails3, nails4],
-    category: "new",
+    category: ["new"],
     description: "Beautiful ombré gradient from nude to sparkly pink. A showstopper!",
   },
   {
@@ -61,7 +61,7 @@ export const products: Product[] = [
     name: "Sweetheart Pink",
     price: 1100,
     images: [nails6, nails2, nails4, nails1],
-    category: "new",
+    category: ["new"],
     description: "Cute baby pink nails with an adorable heart accent nail.",
   },
   {
@@ -69,7 +69,7 @@ export const products: Product[] = [
     name: "Rose Quartz",
     price: 1700,
     images: [nails2, nails5, nails3, nails6],
-    category: "new",
+    category: ["new"],
     description: "Inspired by the healing crystal, these nails feature a soft rosy translucent finish.",
   },
   {
@@ -77,7 +77,7 @@ export const products: Product[] = [
     name: "Midnight Cherry",
     price: 1900,
     images: [nails3, nails5, nails1, nails4],
-    category: "new",
+    category: ["new"],
     description: "Deep, dramatic cherry nails with subtle shimmer for evening glamour.",
   },
 ];
